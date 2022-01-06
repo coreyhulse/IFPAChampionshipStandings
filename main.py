@@ -40,7 +40,7 @@ async def on_message(message):
       await message.channel.send(f"```\n{standings_data}\n```")
     else:
       await message.channel.send(help_message)
-    await message.channel.send(f"I am version 1.0 of this bot.  https://github.com/coreyhulse/randompinballstuff/ifpachampionshipbot/")
+    await message.channel.send(f"I am version 1.0 of this bot.  https://github.com/coreyhulse/IFPAChampionshipStandings")
 
 #This is where your Discord token will go
 client.run(os.environ['TOKEN'])
