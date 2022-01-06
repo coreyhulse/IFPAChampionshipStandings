@@ -11,7 +11,10 @@ help_message = '''I am the IFPA NACS State and Provincial Championship Bot.  Typ
 * Two-Letter State or Province Code
 * Year
 I will attempt to return the top 32 players for the year requested.
-Example: $ipfachamps PA 2022'''
+Example: $ipfachamps PA 2022
+
+https://github.com/coreyhulse/IFPAChampionshipStandings
+'''
 
 # instantiate IFPAChampsStandings
 ifpa_champs = ifpachamps.IFPAChampsStandings()
@@ -40,7 +43,7 @@ async def on_message(message):
       await message.channel.send(f"```\n{standings_data}\n```")
     else:
       await message.channel.send(help_message)
-    await message.channel.send(f"I am version 1.0 of this bot.  https://github.com/coreyhulse/IFPAChampionshipStandings")
+    await message.channel.send(f"I am version 1.0 of this bot.  $ifpachamps to see standings; #ifpahelp for info.")
 
 #This is where your Discord token will go
 client.run(os.environ['TOKEN'])
