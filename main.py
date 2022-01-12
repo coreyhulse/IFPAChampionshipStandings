@@ -45,5 +45,17 @@ async def on_message(message):
       await message.channel.send(help_message)
     await message.channel.send(f"I am version 1.0 of this bot.  $ifpachamps to see standings; $ifpahelp for info.")
 
+  if f'$ifpachampw' in message_content:
+
+    key_words, search_words, full_url = ifpa_champs.key_words_search_wnacs(message_content)
+    standings_data = ifpa_champs.search(key_words)
+    
+    await message.channel.send(f"I searched for '{search_words}'. I looked at this page for standings: {full_url}")
+    if len(search_words) > 0:
+      await message.channel.send(f"```\n{standings_data}\n```")
+    else:
+      await message.channel.send(help_message)
+    await message.channel.send(f"I am version 1.0 of this bot.  $ifpachamps to see standings; $ifpahelp for info.")
+
 #This is where your Discord token will go
 client.run(os.environ['TOKEN'])
