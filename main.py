@@ -48,7 +48,7 @@ async def on_message(message):
   if f'$ifpachampw' in message_content:
 
     key_words, search_words, full_url = ifpa_champs.key_words_search_wnacs(message_content)
-    standings_data = ifpa_champs.search(key_words)
+    standings_data = ifpa_champs.search_wnacs(key_words)
     
     await message.channel.send(f"I searched for '{search_words}'. I looked at this page for standings: {full_url}")
     if len(search_words) > 0:

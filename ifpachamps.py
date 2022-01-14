@@ -56,7 +56,7 @@ class IFPAChampsStandings:
       if row_counter < 33:
         cols = row.find_all(["th", "td"])
         cols = [ele.text.strip() for ele in cols]
-        data.append([ele for ele in cols if ele]) # Get rid of empty values
+        #data.append([ele for ele in cols if ele]) # Get rid of empty values
       row_counter = row_counter + 1
     top_list = []
     for element in data:
@@ -73,3 +73,38 @@ class IFPAChampsStandings:
     #  Example: $ipfachamps PA 2022'''
       
     return top_table
+
+  def search_wnacs(self, keywords):
+
+    #try:
+    response = requests.get(self.url, headers = self.headers)
+    content = response.content
+    soup = BeautifulSoup(content, 'html.parser')
+    data = []
+    table = soup.find('table', attrs={'class':'table table-striped table-hover table-sm'})
+    rows = table.find_all('tr')
+    row_counter = 0
+    for row in rows:
+      if row_counter < 33:
+        cols = row.find_all(["th", "td"])
+        #cols = [ele.text.strip() for ele in cols]
+        cols = [ele.text for ele in cols]
+        data.append([ele for ele in cols if ele]) # Get rid of empty values
+      row_counter = row_counter + 1
+    top_list = []
+    for element in data:
+      top_list.append([element[0], element[1], element[3]])
+    top_table_w = t2a(
+    #header = ["Rank", "Player", "Pts"],
+    body = top_list,
+    style = PresetStyle.thin_compact)
+    print(data)
+    #except:
+    #  top_table = '''Error: I am not finding standings for what you entered.  Can you try again?
+    #  Type $ifpachamps followed by the following two inputs:
+    #  * Two-Letter State or Province Code
+    #  * Year
+    #  Example: $ipfachamps PA 2022'''
+      
+    #return top_table_w
+    #return top_list
