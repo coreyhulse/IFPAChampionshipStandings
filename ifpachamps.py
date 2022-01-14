@@ -38,12 +38,13 @@ class IFPAChampsStandings:
         if row_counter < 33:
           cols = row.find_all(["th", "td"])
           cols = [ele.text.strip() for ele in cols]
-          #data.append([ele for ele in cols if ele]) # Get rid of empty values
+          data.append([ele for ele in cols if ele]) # Get rid of empty values
         row_counter = row_counter + 1
       top_list = []
       for element in data:
         top_list.append([element[0], element[1], element[3]])
       top_table = t2a(
+      #header = ["Rank", "Player", "Pts"],
       body = top_list,
       style = PresetStyle.thin_compact)
     except:

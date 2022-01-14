@@ -45,7 +45,7 @@ async def on_message(message):
       await message.channel.send(help_message)
     await message.channel.send(f"I am version 1.0 of this bot.  $ifpachamps to see standings; $ifpahelp for info.")
 
-  if f'$ifpachampw' in message_content:
+  if f'$ifpachamps_wnacs' in message_content:
 
     key_words, search_words, full_url = ifpa_champs.key_words_search_wnacs(message_content)
     standings_data = ifpa_champs.search_wnacs(key_words)
