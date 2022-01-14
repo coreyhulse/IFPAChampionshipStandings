@@ -1,6 +1,7 @@
 import requests
 from table2ascii import table2ascii as t2a, PresetStyle
 from bs4 import BeautifulSoup
+import csv
 
 class IFPAChampsStandings:
   def __init__(self):
@@ -57,10 +58,27 @@ class IFPAChampsStandings:
     return top_table
 
   def key_words_search_wnacs(self, user_message):
+    wnacs_output = {}
+
+    with open('wnacs.csv', mode='r') as inp:
+      datareader = csv.reader(inp)
+      for row in datareader:
+        open_key = row[1] + "_" + row[0] + "_OPEN"  
+        wnacs_output[open_key] = row[2]
+        womens_key = row[1] + "_" + row[0] + "_WOMENS"  
+        wnacs_output[womens_key] = row[3]
+    print(wnacs_output)
     self.url = 'https://www.ifpapinball.com/rankings/custom_view.php?id=325'
     words = user_message.split()[1:]
-    #state = words[0]
-    #year = words[1]
+    state = words[0]
+    year = words[1]
+    match_key_open = state + "_" + year + "_OPEN"
+    match_key_womens = state + "_" + year + "_WOMENS"
+    url_open_key = wnacs_output.get(match_key_open)
+    print(match_key_open)
+    print(url_open_key)
+    self.url = 'https://www.ifpapinball.com/rankings/custom_view.php?id=' + url_open_key
+
     #championship = words[2]
     #self.url = 'https://www.ifpapinball.com/'
     #self.url = self.url + 'nacs'
