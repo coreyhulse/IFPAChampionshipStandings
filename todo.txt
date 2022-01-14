@@ -1,6 +1,3 @@
-Add State Lookup for WNACS
-Second Table for WNACS
-Documentation in Help
 How many servers is this being used in?
 Publish
 Post to TiltForums
