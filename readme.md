@@ -2,7 +2,6 @@ I am the IFPA NACS State and Provincial Championship Bot.
 
 Link to Add Bot to Discord: https://discord.com/api/oauth2/authorize?client_id=927940692297281566&permissions=534723951680&scope=bot
 
-
 Type $ifpachamps_nacs or $ifpachamps_wnacs followed by the following two inputs:
 
 * Two-Letter State or Province Code
@@ -16,6 +15,7 @@ The Womens standings relies on a lookup table stored in my GitHub repository (wn
 
 Commands to Try:
 $ifpahelp - Help Response
+$ifpachamps - Originally in 1.0; should return "try again" response
 $ipfachamps_nacs PA 2021 - Location That Works
 $ipfachamps_nacs PJ 2021 - Location That Does Not Work
 $ipfachamps_wnacs PA 2022 - Location That Works

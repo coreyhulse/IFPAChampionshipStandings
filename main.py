@@ -38,6 +38,11 @@ async def on_message(message):
   if f'$IFPAHELP' in message_content:
     await message.channel.send(help_message)
   
+  message_content_left = message_content[0:12]
+
+  if message_content_left == '$IFPACHAMPS ':
+    await message.channel.send(f"UPDATE ALERT! I see you searched $IFPACHAMPS.  I have expanded my capabilities to allow searching for both the NACS and WNACS.  Try one of the following: $ipfachamps_nacs or $ipfachamps_wnacs")
+  
   if f'$IFPACHAMPS_NACS' in message_content:
 
     key_words, search_words, full_url = ifpa_champs.key_words_search_nacs(message_content)
@@ -58,16 +63,24 @@ async def on_message(message):
     standings_data_women = ifpa_champs.search_wnacs(key_words, womens_url)
     
     # Open Standings
-    await message.channel.send(f"I searched for WNACS Standings for '{search_words}'. {message_response}I looked at this page for Open standings: {open_url}")
-    if len(search_words) > 0:
-      await message.channel.send(f"```\n{standings_data_open}\n```")
-          
+    await message.channel.send(f"I searched for WNACS Standings for '{search_words}'. I looked at this page for Open standings: {open_url}")
+    
+    if len(message_response) > 5:
+      message_response = message_response
+    else: 
+      if len(search_words) > 0:
+        await message.channel.send(f"```\n{standings_data_open}\n```")
+
     # Womens Standings
-    await message.channel.send(f"I searched for WNACS Standings for '{search_words}'. {message_response}I looked at this page for Womens standings: {womens_url}")
-    if len(search_words) > 0:
-      await message.channel.send(f"```\n{standings_data_women}\n```")
+    await message.channel.send(f"I searched for WNACS Standings for '{search_words}'. I looked at this page for Womens standings: {womens_url}")
+
+    if len(message_response) > 5:
+      await message.channel.send(message_response)
     else:
-      await message.channel.send(help_message)
+      if len(search_words) > 0:
+        await message.channel.send(f"```\n{standings_data_women}\n```")
+      else:
+        await message.channel.send(help_message)
     
     await message.channel.send(f"I am version 2.0 of this bot.  $ifpachamps_nacs or $ifpachamps_wnacs to see standings; $ifpahelp for info.")
 
